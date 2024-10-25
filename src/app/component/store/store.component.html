@@ -1,0 +1,161 @@
+<app-header></app-header>
+
+<div class="history container">
+    <p>Trang chủ / </p>  <p>LAPTOP MỚI</p>
+</div>
+<br>
+<div class="container filter_container">
+    <div>
+        <label for="">Thương hiệu :</label>
+        <select name="ThuongHieu" id="" [(ngModel)]="query.brand" (change)="brandChange()" >
+         
+            <option value="all" >Tất cả</option>
+            <option *ngFor="let brand of Brands" [ngValue]="brand.brand_id">{{ brand.brand_name  }}</option>
+    
+        </select>
+
+
+    </div>
+
+    <div>
+        <label for="">Danh mục :</label>
+        <select name="danhmuc" id="" [(ngModel)]="query.category" (change)="categoryChange()" >
+         
+            <option value="all" >Tất cả</option>
+            <option *ngFor="let item of Category" [ngValue]="item.category_id">{{ item.category_name  }}</option>
+    
+        </select>
+        
+
+    </div>
+ 
+    <div>
+        <label for="Giá">Giá :</label>
+        <select name="gia" id="" [(ngModel)]="query.price" (change)="priceFilterChange()">
+            <option value="0" >Tất cả</option>
+            <option value="1">5 triệu - 10 triệu</option>
+            <option value="2">10 triệu - 20 triệu</option>
+            <option value="3">20 triệu - 30 triệu</option>
+            <option value="4">30 triệu - 40 triệu</option>
+            <option value="5"> >40 triệu</option>
+           
+        </select>
+
+    </div>
+   
+    <!-- <div>
+        <label for="CPU">CPU :</label>
+        <select name="cpu" id="" [(ngModel)]="cpu">
+            <option value="0">Tất cả</option>
+            <option value="1">AMD RYZEN 5</option>
+            <option value="2">AMD RYZEN 7</option>
+        </select>
+
+    </div>
+
+    <div>
+        
+    <label for="RAM">RAM :</label>
+        <select name="ram" id="" [(ngModel)]="ram">
+            <option value="0">Tất cả</option>
+            <option value="1">8GB</option>
+            <option value="2">16GB</option>
+            <option value="3">4GB</option>
+            <option value="4">12GB</option>
+            <option value="5">32GB</option>
+        </select>
+
+    </div>
+
+    <div>
+        
+        <label for="bonho">Bộ nhớ :</label>
+        <select name="bonho" id="" [(ngModel)]="storage">
+            <option value="0">Tất cả</option>
+            <option value="1">256GB</option>
+            <option value="2">512GB</option>
+            <option value="3">1TB</option>
+            <option value="5">128GB</option>
+        </select>
+
+    </div> -->
+
+    <div>
+        <label for="">Sắp xếp theo : </label>
+        <select name="" id="" [(ngModel)]="query.sort" (change)="sortChange()">
+            <option name="" value="0">Giá thấp đến cao</option>
+            <option name="" value="1">Giá cao đến thấp</option>
+            <option name="" value="2">Mới nhất</option>
+            <!-- <option name="" value="3">Xem nhiều nhất</option> -->
+            <!-- <option name="" value="4">Đánh giá cao nhất</option> -->
+            <option name="" value="4">Tên A-Z</option>
+            <option name="" value="5">Tên Z-A</option>
+        </select>
+
+    </div>
+
+    <div>
+        <label for="">Hiển thị :</label>
+        <select name="" id="" [(ngModel)]="query.pageSize" (change)="pageSizeChange()">
+            <option value="8">8</option>
+            <option value="16">16</option>
+            <option value="32">32</option>
+            <option value="50">50</option>
+        </select>
+    </div>
+
+</div>
+
+
+
+<div class="container product_container row">
+    <!-- product start -->
+    <div class="product" *ngFor="let item of Variant" >
+      <a href="detail/{{item.id}}" style="text-decoration: none; color:black;" >
+        <div class="product_image" >
+          <img src="{{item.image}}"  />
+        </div>
+        <div class="item__description">
+          <div class="item__description">
+            <div class="item__description--name">
+              <p style="min-height: 36px;">
+                [New 100%] Lenovo Legion Y7000P 2024 (Core i7-14650HX, 16GB,
+                1TB, RTX 4050 6GB, 16'' 2K+ 165Hz)
+                <!-- {{item.laptop_name}} -->
+              </p>
+            </div>
+            <div class="item__description--price">
+              <p class="current_price">{{item.price| number: '1.0-0'}}đ</p>
+              <p class="old_price"><s>{{item.price| number :'1.0-0'}}đ</s></p>
+            </div>
+          </div>
+        </div>
+
+      </a>
+  
+
+      <div class="sale_percent">-5%</div>
+    </div>
+    <!-- product end -->
+
+    <!-- end of product container -->
+</div>
+
+<div class="container " style="display: flex ;height: 30px;justify-content: center;align-items: center;">
+    <ul class="pagination r">
+        <li class="page-item disabled" [style]="{'background-color': query.pageIndex!=1 ? '#fff' : '#ddd'}  " [ariaDisabled]="query.pageIndex!=1" (click)="previousPage()">
+            Previous
+        </li>
+
+        <li class="page-item page-link" [ngClass]="{'active': query.pageIndex === item}" *ngFor="let item of numbers" (click)="setPage(item)">{{ item }}</li>
+ 
+
+        <li class="page-item"  [style]="{'background-color': query.pageIndex!=totalPage ? '#fff' : '#ddd'}" [ariaDisabled]="query.pageIndex!=totalPage" (click)="nextPage()">
+            Next
+        </li>
+      </ul>
+
+</div>
+
+
+  <app-footer></app-footer>

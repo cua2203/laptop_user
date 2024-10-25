@@ -1,0 +1,29 @@
+#laptop_category:hover > div{
+    display: block !important;
+    cursor: pointer;
+}
+#laptop_category > div{
+    display: none;
+    position: absolute;
+    width: 500px;
+    height: 200px; 
+    background-color: white;
+    z-index: 11111;
+    left:360px;top:100%;
+    color: black;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #ddd;
+}
+
+#laptop_category li{
+    height: 30px;
+    line-height: 30px;
+}
+#laptop_category li:hover{
+    background-color: #ddd;
+}
+
+.hidden{
+    display: none !important;
+}

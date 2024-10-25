@@ -1,0 +1,58 @@
+<app-header></app-header>
+
+<div class="history container">
+    <p>Trang chủ /</p> <p>Bài viết</p>
+</div>
+
+<div class="container" style="min-height: 40px;display: flex;align-items: center;justify-content: flex-start;">
+
+        <div class="post_tags " [class.active_tag]="activeTab === 'all'"  (click)="setActiveTab('all')" >
+            TIN TỨC
+        </div>
+        <div class="post_tags " *ngFor="let item of tags"  [class.active_tag]="activeTab === item.tag_id" (click)="setActiveTab(item.tag_id)">
+
+            {{item.name}}
+        </div>
+ 
+</div>
+
+<div class="container" style="min-height: 500px;border: 1px solid #ddd;display: flex;">
+    <div style="width: 65%;min-height: 500px;padding: 10px;">
+
+        <div style="width: 100%;height: 80px;border-bottom:1px solid #ddd;display: flex;" *ngFor="let item of posts" routerLink="/post/{{item.post_id}}" >
+                <div  style="width: 20%;height: 100%;">
+                    <img src="http://localhost:3001/uploads/category/1701391839799kt1.jpg" style="width: 70%;" alt="">
+
+                </div>
+                <div style="width: 70%; margin-left: 10px;">
+                    <p style="height: 50%;display: flex; align-items: center;">{{item.title}}</p>
+                    <p >{{item.created_at | date :'yyyy-MM-dd hh:mm:ss'}}</p>
+
+                </div>
+        </div>
+
+
+
+    </div>
+
+    <div style="width: 35%;min-height: 500px;border-left: 1px solid #ddd;">
+        <div style="width: 100%;height: 50px;align-content: center;padding:0px 10px;border-bottom: 2px solid rgb(56, 56, 196);box-sizing:border-box;">
+            TIN TỨC NỔI BẬT
+        </div>
+        <div style="width: 100%;padding: 5px;">
+            <ul style="">
+                <li><p>Laptop Gaming NGON NHẤT, RẺ NHẤT có Core i9 - 14900HX + RTX 4060..?</p></li>
+                <li><p>HÈ RỰC RỠ DEAL HẾT CỠ - TẶNG TỚI 5 TRIỆU ĐỒNG!</p></li>
+                <li>Chuẩn Ram Mới LPCAMM2 - Tương Lai Của Laptop</li>
+                <li>AMD ra mắt Ryzen 9000 series và Ryzen AI 300 series</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,20 @@
+.onActive{
+    background-color: #AAA;
+    color: white !important;
+
+
+}
+
+.tab{
+    width: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 0px 5px ;
+  
+}
+.tabActive{
+    margin: 0px 5px;
+    border-bottom: 2px solid rgba(37, 37, 179, 0.795);
+}

@@ -1,0 +1,69 @@
+<div class="header container">
+    <div class="header_logo">
+      <a  href="/">
+        <img src="./assets/images/logo.jpg" alt="./assets/images/logo" />
+
+      </a>
+    </div>
+
+    <div class="header_search">
+      <div class="header_search--form">
+        <input
+          placeholder="Nhập từ khóa tìm kiếm ..."
+          type="text"
+          class="header_search--input"
+        />
+        <button class="header_search--button">
+          <i class="bi bi-search"></i>
+        </button>
+
+
+        <div class="header_search--result">
+          <div class="result_item">
+              <img src="./assets/images/logo.jpg" alt="./assets/images/logo" />
+
+              <div class="result_item--title">
+                <a href="/">Điện thoại</a>
+              </div>
+             
+    
+
+          </div>
+  
+        </div>
+
+      </div>
+
+   
+    </div>
+
+    <div *ngIf="!customerEmail" class="header_user" routerLink="/user-detail/">
+      <i class="bi bi-person-circle"></i>
+      <p>Đăng nhập</p>
+    </div>
+    
+    <div *ngIf="customerEmail" class="header_user" routerLink="/manage-order/{{customerEmail}}">
+      <i class="bi bi-person-circle"></i>
+      <p>Tài khoản</p>
+    </div>
+
+
+
+    <div class="header_cart" routerLink="/cart">
+      <i class="bi bi-cart3"></i>
+
+      <span>Giỏ hàng</span>
+    </div>
+  </div>
+  
+  <div class="menu">
+    <div class="container">
+      <div class="menu_item" routerLink="/store"><i class="bi bi-laptop"></i>Laptop</div>
+      <div class="menu_item" routerLink="/post"><i class="bi bi-card-text" ></i>Bài viết</div>
+      <div class="menu_item">
+        <i class="bi bi-file-person"></i>Giới thiệu
+      </div>
+      <div class="menu_item"><i class="bi bi-coin"></i>Khuyến mãi</div>
+      <div class="menu_item"><i class="bi bi-telephone"></i>Liên hệ</div>
+    </div>
+  </div>

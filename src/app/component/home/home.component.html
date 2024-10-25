@@ -1,0 +1,568 @@
+<div class="header container">
+  <div class="header_logo">
+    <a routerLink="/">
+      <img src="./assets/images/logo.jpg" alt="./assets/images/logo"
+    /></a>
+  </div>
+  <div class="header_search">
+    <div #myDiv class="header_search--form">
+      <input
+        placeholder="Nhập từ khóa tìm kiếm ..."
+        type="text"
+        class="header_search--input"
+        id="searchInput"
+        [(ngModel)]="query.searchString"
+        (ngModelChange)="onSearch()"
+
+        (keyup)="onSearch()"
+
+      />
+
+  
+      <button  (click)="onSearch()" class="header_search--button">
+        <i class="bi bi-search"></i>
+      </button>
+
+      <div  #suggestionsDiv [ngStyle]="{'display': isDivVisible ? 'block' : 'none'}"  class="header_search--result">
+         
+
+        <div routerLink="detail/{{item.laptop_id}}" class="result_item" *ngFor="let item of Variant">
+              <img src="./assets/images/logo.jpg" alt="./assets/images/logo" />
+
+              <div class="result_item--title">
+                <div  >{{item.laptop_name +'(' +'\t' +item.ram +'-'+ item.storage +')' }}</div>
+              </div>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!customerEmail" class="header_user" routerLink="/user-detail/">
+    <i class="bi bi-person-circle"></i>
+    <p>Đăng nhập</p>
+  </div>
+  
+  <div *ngIf="customerEmail" class="header_user" routerLink="/manage-order/{{customerEmail}}">
+    <i class="bi bi-person-circle"></i>
+    <p>Tài khoản</p>
+  </div>
+  
+
+
+  <div class="header_cart" routerLink="/cart">
+    <i class="bi bi-cart3"></i>
+
+    <span>Giỏ hàng</span>
+  </div>
+</div>
+
+<div class="menu" style="position: relative;">
+  <div class="container">
+    <div class="menu_item" id="laptop_category" routerLink="/store">
+      <i class="bi bi-laptop"></i>Laptop
+      <div class="container" id="category_lits" >
+        <div style="float: left;width: 50%;" >
+            <div  style="height: 30px;width: 100%;font-size: 16px;font-weight: bold;">DANH MỤC</div>
+          <ul>
+            <li [routerLink]="['/store/']" [queryParams]="{ category: item.category_id }" *ngFor="let item of Category">{{item.category_name}}</li>
+          </ul>
+        </div>
+        
+        <div style="float:right;width: 50%;">
+          <div  style="height: 30px;width: 100%;font-size: 16px;font-weight: bold;">THƯƠNG HIỆU</div>
+          <ul>
+            <li [routerLink]="['/store/']" [queryParams]="{ brand: item.brand_id}" *ngFor="let item of brand">LAPTOP {{item.brand_name | uppercase}}</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="menu_item" routerLink="/post"><i class="bi bi-card-text" ></i>Bài viết</div>
+    <div class="menu_item"><i class="bi bi-file-person"></i>Giới thiệu</div>
+    <div class="menu_item"><i class="bi bi-coin"></i>Khuyến mãi</div>
+    <div class="menu_item"><i class="bi bi-telephone"></i>Liên hệ</div>
+  </div>
+
+</div>
+
+<div class="main">
+  <div class="slide container">
+    <div class="slide_show">
+      <div class="slide_show--image">
+        <img src="./assets/images/slide1.jpg" />
+      </div>
+
+      <div class="slide_show--image">
+        <img src="./assets/images/slide2.jpg" />
+      </div>
+
+      <div class="slide_show--image">
+        <img src="./assets/images/slide3.jpg" />
+      </div>
+      <div class="slide_show--image">
+        <img src="./assets/images/slide4.jpg" />
+      </div>
+
+      <!-- Next and previous buttons -->
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <div class="slide_banner">
+      <img class="slide_banner--top" src="./assets/images/anh1.jpg" />
+      <img class="slide_banner--bottom" src="./assets/images/anh2.jpg" />
+    </div>
+  </div>
+  <div class="address_banner container">
+    <img class="address_banner--left" src="./assets/images/banner1.jpg" />
+    <img class="address_banner--right" src="./assets/images/banner2.jpg" />
+  </div>
+
+  <!-- <div class="sale container">
+      <div class="sale_top">
+        <div class="sale_top--left">GIỜ VÀNG GIÁ SỐC</div>
+        <div class="sale_top--right">Xem tất cả ></div>
+      </div>
+      <div class="sale_content">
+        <div class="sale_content--item">
+          <div class="item__image">
+            <img src="./assets/images/laptop/laptop1.jpg" />
+          </div>
+          <div class="item__description">
+            <div class="item__description">
+              <div class="item__description--name">
+                <p>
+                  [New 100%] Lenovo Legion Y7000P 2024 (Core i7-14650HX, 16GB,
+                  1TB, RTX 4050 6GB, 16'' 2K+ 165Hz)
+                </p>
+              </div>
+              <div class="item__description--price">
+                <p class="current_price">1.500.000đ</p>
+                <p class="old_price"><s>1.500.000đ</s></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="sale_percent">-5%</div>
+        </div>
+        <div class="sale_content--item">
+          <div class="item__image">
+            <img src="./assets/images/laptop/laptop1.jpg" />
+          </div>
+          <div class="item__description">
+            <div class="item__description">
+              <div class="item__description--name">
+                <p>
+                  [New 100%] Lenovo Legion Y7000P 2024 (Core i7-14650HX, 16GB,
+                  1TB, RTX 4050 6GB, 16'' 2K+ 165Hz)
+                </p>
+              </div>
+              <div class="item__description--price">
+                <p class="current_price">1.500.000đ</p>
+                <p class="old_price"><s>1.500.000đ</s></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="sale_percent">-5%</div>
+        </div>
+        <div class="sale_content--item">
+          <div class="item__image">
+            <img src="./assets/images/laptop/laptop1.jpg" />
+          </div>
+          <div class="item__description">
+            <div class="item__description">
+              <div class="item__description--name">
+                <p>
+                  [New 100%] Lenovo Legion Y7000P 2024 (Core i7-14650HX, 16GB,
+                  1TB, RTX 4050 6GB, 16'' 2K+ 165Hz)
+                </p>
+              </div>
+              <div class="item__description--price">
+                <p class="current_price">1.500.000đ</p>
+                <p class="old_price"><s>1.500.000đ</s></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="sale_percent">-5%</div>
+        </div>
+        <div class="sale_content--item">
+          <div class="item__image">
+            <img src="./assets/images/laptop/laptop1.jpg" />
+          </div>
+          <div class="item__description">
+            <div class="item__description">
+              <div class="item__description--name">
+                <p>
+                  [New 100%] Lenovo Legion Y7000P 2024 (Core i7-14650HX, 16GB,
+                  1TB, RTX 4050 6GB, 16'' 2K+ 165Hz)
+                </p>
+              </div>
+              <div class="item__description--price">
+                <p class="current_price">1.500.000đ</p>
+                <p class="old_price"><s>1.500.000đ</s></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="sale_percent">-5%</div>
+        </div>
+        <div class="sale_content--item">
+          <div class="item__image">
+            <img src="./assets/images/laptop/laptop1.jpg" />
+          </div>
+          <div class="item__description">
+            <div class="item__description">
+              <div class="item__description--name">
+                <p>
+                  [New 100%] Lenovo Legion Y7000P 2024 (Core i7-14650HX, 16GB,
+                  1TB, RTX 4050 6GB, 16'' 2K+ 165Hz)
+                </p>
+              </div>
+              <div class="item__description--price">
+                <p class="current_price">1.500.000đ</p>
+                <p class="old_price"><s>1.500.000đ</s></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="sale_percent">-5%</div>
+        </div>
+      </div>
+    </div> -->
+
+  <!-- laptop ban chay -->
+  <div class="container banner_category">
+    <div class="banner_category_left">
+      Bán chạy
+      <div class="triangle"></div>
+    </div>
+    <div class="banner_category_right">
+      <div style="font-size: 16px; font-weight: 600">Thương hiệu :</div>
+      <div><a href="#">DELL</a></div>
+      <div><a href="#">LENOVO</a></div>
+      <div><a href="#">HP</a></div>
+      <div><a href="#">APPLE</a></div>
+      <div><a href="#">ASUS</a></div>
+      <div><a href="#">LG</a></div>
+      <div><a href="#">TUF</a></div>
+    </div>
+  </div>
+
+  <div class="container product_container row">
+
+    
+    <!-- product start -->
+    <div class="product" *ngFor="let item of topSelling">
+      <a
+        href="detail/{{ item.id }}"
+        style="text-decoration: none; color: black"
+      >
+        <div class="product_image">
+          <img src="{{ item.image }}" />
+        </div>
+        <div class="item__description">
+          <div class="item__description">
+            <div class="item__description--name">
+              <p style="min-height: 36px">
+                {{ item.laptop_name }}-{{ item.ram }}-{{ item.storage }}
+              </p>
+            </div>
+            <div class="item__description--price">
+              <p class="current_price">{{ item.price | number : "1.0-0" }}</p>
+              <p class="old_price">
+                <s>{{ item.price | number : "1.0-0" }}</s>
+              </p>
+            </div>
+          </div>
+        </div>
+      </a>
+      <div class="sale_percent">-5%</div>
+    </div>
+    <!-- product end -->
+
+    <!-- end of product container -->
+  </div>
+  <br />
+
+  <!-- end laptop ban chay -->
+
+  <div class="container banner_category">
+    <div class="banner_category_left">
+      Mới nhất
+      <div class="triangle"></div>
+    </div>
+    <div class="banner_category_right">
+      <div style="font-size: 16px; font-weight: 600">Thương hiệu :</div>
+      <div><a href="#">DELL</a></div>
+      <div><a href="#">LENOVO</a></div>
+      <div><a href="#">HP</a></div>
+      <div><a href="#">APPLE</a></div>
+      <div><a href="#">ASUS</a></div>
+      <div><a href="#">LG</a></div>
+      <div><a href="#">TUF</a></div>
+    </div>
+  </div>
+
+  <div class="container product_container row">
+    <!-- product start -->
+    <div class="product" *ngFor="let item of newEst">
+      <a
+        href="detail/{{ item.id }}"
+        style="text-decoration: none; color: black"
+      >
+        <div class="product_image">
+          <img src="{{ item.image }}" />
+        </div>
+        <div class="item__description">
+          <div class="item__description">
+            <div class="item__description--name">
+              <p style="min-height: 36px">
+                {{ item.laptop_name }}-{{ item.ram }}-{{ item.storage }}
+              </p>
+            </div>
+            <div class="item__description--price">
+              <p class="current_price">
+                {{
+                  item.price !== "0.00"
+                    ? (item.price | number : "1.0-0")
+                    : "Liên hệ"
+                }}
+              </p>
+              <p class="old_price">
+                <s>{{
+                  item.price !== "0.00"
+                    ? (item.price | number : "1.0-0")
+                    : "Liên hệ"
+                }}</s>
+              </p>
+            </div>
+          </div>
+        </div>
+      </a>
+      <div class="sale_percent">-5%</div>
+    </div>
+    <!-- product end -->
+
+    <!-- end of product container -->
+  </div>
+
+  <!-- hoc tap van phong -->
+  <div class="container banner_category">
+    <div style="width: 300px !important" class="banner_category_left">
+      HỌC TẬP - VĂN PHÒNG
+      <div class="triangle"></div>
+    </div>
+    <div class="banner_category_right">
+      <div style="font-size: 16px; font-weight: 600">Thương hiệu :</div>
+      <div><a href="#">DELL</a></div>
+      <div><a href="#">LENOVO</a></div>
+      <div><a href="#">HP</a></div>
+      <div><a href="#">APPLE</a></div>
+      <div><a href="#">ASUS</a></div>
+      <div><a href="#">LG</a></div>
+      <div><a href="#">TUF</a></div>
+    </div>
+  </div>
+
+  <div class="container product_container row">
+    <!-- product start -->
+    <div class="product" *ngFor="let item of laptops">
+      <a
+        href="detail/{{ item.id }}"
+        style="text-decoration: none; color: black"
+      >
+        <div class="product_image">
+          <img src="{{ item.image }}" />
+        </div>
+        <div class="item__description">
+          <div class="item__description">
+            <div class="item__description--name">
+              <p style="min-height: 36px">
+                {{ item.laptop_name }}-{{ item.ram }}-{{ item.storage }}
+              </p>
+            </div>
+            <div class="item__description--price">
+              <p class="current_price">{{ item.price | number : "1.0-0" }}</p>
+              <p class="old_price">
+                <s>{{ item.price | number : "1.0-0" }}</s>
+              </p>
+            </div>
+          </div>
+        </div>
+      </a>
+      <div class="sale_percent">-5%</div>
+    </div>
+    <!-- product end -->
+
+    <!-- end of product container -->
+  </div>
+  <br />
+  <!-- end hoc tap van phong -->
+
+  <!-- do hoa ky thuat -->
+  <div class="container banner_category">
+    <div style="width: 300px !important" class="banner_category_left">
+      ĐỒ HỌA - KỸ THUẬT
+      <div class="triangle"></div>
+    </div>
+    <div class="banner_category_right">
+      <div style="font-size: 16px; font-weight: 600">Thương hiệu :</div>
+      <div><a href="#">DELL</a></div>
+      <div><a href="#">LENOVO</a></div>
+      <div><a href="#">HP</a></div>
+      <div><a href="#">APPLE</a></div>
+      <div><a href="#">ASUS</a></div>
+      <div><a href="#">LG</a></div>
+      <div><a href="#">TUF</a></div>
+    </div>
+  </div>
+
+  <div class="container product_container row">
+    <!-- product start -->
+    <div class="product" *ngFor="let item of lapDHKT">
+      <a
+        href="detail/{{ item.id }}"
+        style="text-decoration: none; color: black"
+      >
+        <div class="product_image">
+          <img src="{{ item.image }}" />
+        </div>
+        <div class="item__description">
+          <div class="item__description">
+            <div class="item__description--name">
+              <p style="min-height: 36px">
+                {{ item.laptop_name }}-{{ item.ram }}-{{ item.storage }}
+              </p>
+            </div>
+            <div class="item__description--price">
+              <p class="current_price">{{ item.price | number : "1.0-0" }}</p>
+              <p class="old_price">
+                <s>{{ item.price | number : "1.0-0" }}</s>
+              </p>
+            </div>
+          </div>
+        </div>
+      </a>
+      <div class="sale_percent">-5%</div>
+    </div>
+    <!-- product end -->
+
+    <!-- end of product container -->
+  </div>
+  <br />
+  <!-- end do hoa ky thuat -->
+
+  <!-- do hoa ky thuat -->
+  <div class="container banner_category">
+    <div style="width: 300px !important" class="banner_category_left">
+      LAPTOP GAMING
+      <div class="triangle"></div>
+    </div>
+    <div class="banner_category_right">
+      <div style="font-size: 16px; font-weight: 600">Thương hiệu :</div>
+      <div><a href="#">DELL</a></div>
+      <div><a href="#">LENOVO</a></div>
+      <div><a href="#">HP</a></div>
+      <div><a href="#">APPLE</a></div>
+      <div><a href="#">ASUS</a></div>
+      <div><a href="#">LG</a></div>
+      <div><a href="#">TUF</a></div>
+    </div>
+  </div>
+
+  <div class="container product_container row">
+    <!-- product start -->
+    <div class="product" *ngFor="let item of laptopGaming">
+      <a
+        href="detail/{{ item.id }}"
+        style="text-decoration: none; color: black"
+      >
+        <div class="product_image">
+          <img src="{{ item.image }}" />
+        </div>
+        <div class="item__description">
+          <div class="item__description">
+            <div class="item__description--name">
+              <p style="min-height: 36px">
+                {{ item.laptop_name }}-{{ item.ram }}-{{ item.storage }}
+              </p>
+            </div>
+            <div class="item__description--price">
+              <p class="current_price">{{ item.price | number : "1.0-0" }}</p>
+              <p class="old_price">
+                <s>{{ item.price | number : "1.0-0" }}</s>
+              </p>
+            </div>
+          </div>
+        </div>
+      </a>
+      <div class="sale_percent">-5%</div>
+    </div>
+    <!-- product end -->
+
+    <!-- end of product container -->
+  </div>
+  <br />
+  <!-- end do hoa ky thuat -->
+
+  <!-- mong nhe cao cap -->
+  <div class="container banner_category">
+    <div style="width: 300px !important" class="banner_category_left">
+      MỎNG NHẸ - CAO CẤP
+      <div class="triangle"></div>
+    </div>
+    <div class="banner_category_right">
+      <div style="font-size: 16px; font-weight: 600">Thương hiệu :</div>
+      <div><a href="#">DELL</a></div>
+      <div><a href="#">LENOVO</a></div>
+      <div><a href="#">HP</a></div>
+      <div><a href="#">APPLE</a></div>
+      <div><a href="#">ASUS</a></div>
+      <div><a href="#">LG</a></div>
+      <div><a href="#">TUF</a></div>
+    </div>
+  </div>
+
+  <div class="container product_container row">
+    <!-- product start -->
+    <div class="product" *ngFor="let item of lapMongNhe">
+      <a
+        href="detail/{{ item.id }}"
+        style="text-decoration: none; color: black"
+      >
+        <div class="product_image">
+          <img src="{{ item.image }}" />
+        </div>
+        <div class="item__description">
+          <div class="item__description">
+            <div class="item__description--name">
+              <p style="min-height: 36px">
+                {{ item.laptop_name }}-{{ item.ram }}-{{ item.storage }}
+              </p>
+            </div>
+            <div class="item__description--price">
+              <p class="current_price">{{ item.price | number : "1.0-0" }}</p>
+              <p class="old_price">
+                <s>{{ item.price | number : "1.0-0" }}</s>
+              </p>
+            </div>
+          </div>
+        </div>
+      </a>
+      <div class="sale_percent">-5%</div>
+    </div>
+    <!-- product end -->
+
+    <!-- end of product container -->
+  </div>
+  <br />
+  <!-- end mong nhe cao cap -->
+
+  <!-- and of main content -->
+</div>
+
+<app-footer></app-footer>

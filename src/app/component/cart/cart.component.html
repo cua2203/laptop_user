@@ -1,0 +1,132 @@
+<app-header></app-header>
+<div class="main">
+    
+   <div class="history container">
+       <p>Trang chủ / </p>  <p>Giỏ hàng</p>
+   </div>
+
+
+   <div class="cart_table container" >
+       <table>
+           <thead>
+             <tr>
+                <th></th>
+               <th style="width: 5%;">STT</th>
+               <th>Tên sản phẩm</th>
+               <th style="width: 10%;">Giá</th>
+               <th style="width: 15%;">Số lượng</th>
+               <th style="width: 15%;">Tổng</th>
+               <th style="width: 5%;">Xóa</th>
+             </tr>
+           </thead>
+           <tbody>
+             <!-- Dòng 1 -->
+             <tr *ngFor="let item of items,let i = index">
+                <td ><input type="checkbox" [checked]="item.selected" (change)="selecting(item.variant_id)"></td>
+               <td>{{i+1}}</td>
+
+               <td>{{item.laptop_name}} {{item.cpu}} {{item.ram}} {{item.storage}}</td>
+               <td>{{item.price | number:'1.0-0' }}đ</td>
+
+               <td class="quantity_td">
+                   <span class="minus_span" (click)="decrease(item.variant_id)">-</span>
+
+                   <input size="5" class="input_quantity" disabled value="{{item.cartQuantity}}"> 
+
+                   <span class="plus_span" (click)="increase(item.variant_id)">+</span>
+               </td>
+
+               <td>{{(item.cartQuantity*item.price)| number:'1.0-0'}}</td>
+               <td><button (click)="delete(item.variant_id)">Xóa</button></td>
+             </tr>
+            
+           </tbody>
+         </table>
+         
+
+         <div class="cart_summery">
+           <div class="cart_summery--left"></div>
+           <div class="cart_summery--right">
+               <span>Tổng cộng : {{total | number:'1.0-0'}}đ</span>
+               <span>Thanh toán : {{total | number:'1.0-0'}}đ</span>
+           </div>
+      
+     
+
+         </div>
+         
+
+   </div>
+
+   <div class="thong_tin container">
+       <div class="thong_tin_left">
+           <div class="thong_tin--title">1.Khách hàng khai báo thông tin</div>
+           <span style="margin: 10px 10px;">Những phần đánh dấu (*) là bắt buộc</span>
+
+           <div class="thong_tin--nguoimua">
+            <form  [formGroup]="form" (submit)="onSubmit()">
+
+                <div class="thong_tin--input">
+                    <div>Họ và tên*</div>
+                    <input type="text" formControlName="fullname">
+                </div>
+    
+                <div class="thong_tin--input">
+                    <div>Điện thoại*</div>
+                    <input type="text"  formControlName="email">
+                </div>
+                <div class="thong_tin--input" >
+                    <div>Địa chỉ*</div>
+                    <input type="text" formControlName="address">
+                </div>
+                <div class="thong_tin--input" >
+                    <div>Email*</div>
+                    <input type="text "formControlName="phone">
+                </div>
+
+            </form>
+
+
+           </div>
+
+              
+       </div>
+
+       <div class="thong_tin_right">
+           <div class="thong_tin--title">2.Ghi chú cho đơn hàng</div>
+            <div style="margin-top: 10px;">
+               <textarea name="" id="" cols="61" rows="7" placeholder="Ghi chú cho đơn hàng ..."></textarea>
+            </div>
+            <div>
+               <div class="thong_tin--title">3.Chọn phương thức thanh toán</div>
+               <div style="display: flex; flex-direction: column;">
+                   <div style="margin:10px 10px;">
+                       <input  type="radio" id="thanh_toan_cua_hang" name="pttt" checked>
+                       <label for="thanh_toan_cua_hang">Thanh toán tại cửa hàng</label>
+                   </div>
+                   
+                   <!-- <div style="margin:10px 10px;">
+                       <input type="radio" id="thanh_toan_khi_nhan_hang" name="pttt">
+                       <label for="thanh_toan_khi_nhan_hang">Thanh toán khi nhận hàng (COD)</label>
+                   </div> -->
+                   
+
+               </div>
+
+            </div>
+
+        
+
+       </div>
+
+   
+   </div>
+   <div style="width: 100%; height: 40px; display: flex; justify-content: center;align-items: center;margin-left: 340px;margin-top: 20px;">
+       <button style="width: 200px;height: 40px; background-color: #ff8f00; color: white; border: 1px solid #d27a0a;cursor:pointer;border-radius: 5px;" (click)="onSubmit()">
+           Gửi đơn hàng
+       </button>
+    </div>
+ </div>
+
+
+ <app-footer></app-footer>

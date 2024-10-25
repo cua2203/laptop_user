@@ -1,0 +1,30 @@
+.product{
+    position: relative;
+    width: calc(25% - 10px);
+    height: 100%;
+    background-color: white;
+    box-sizing:border-box;
+    padding: 10px;
+    margin: 5px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.product:hover img{
+    transform: scale(0.85);
+    transition: 0.5s;
+
+}
+.product_image{
+    width: 80%;
+    height: 30%;
+    margin: 0 auto;
+}
+.product_image img{
+    width: 100%;
+    height: 150px !important;
+    /* max-height: 142px; */
+    margin: 0 auto;
+    transition: 0.5s;
+}

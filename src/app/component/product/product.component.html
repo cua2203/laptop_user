@@ -1,0 +1,26 @@
+<div class="product" >
+    <a
+      href="detail/{{ product?.id }}"
+      style="text-decoration: none; color: black"
+    >
+      <div class="product_image">
+        <img src="{{ product.image }}" />
+      </div>
+      <div class="item__description">
+        <div class="item__description">
+          <div class="item__description--name">
+            <p style="min-height: 36px">
+              {{ product.laptop_name }}-{{ product.ram }}-{{ product.storage }}
+            </p>
+          </div>
+          <div class="item__description--price">
+            <p class="current_price">{{ product.price | number : "1.0-0" }}</p>
+            <p class="old_price">
+              <s>{{ product.price | number : "1.0-0" }}</s>
+            </p>
+          </div>
+        </div>
+      </div>
+    </a>
+    <div class="sale_percent">-5%</div>
+  </div>

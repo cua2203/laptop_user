@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<div class="history container">
+    <p>Trang chủ /</p> <p>Bài viết</p>
+</div>
+
+
+<div class="container" style="min-height: 500px;">
+    <div style="width: 100%;height: 40px; display: flex;align-items: center;">
+        {{post.title}}
+
+    </div>
+
+    <div style="width: 100%;min-height: 300px; display: flex;align-items: center;" [innerHTML]="post.content">
+        
+
+
+
+    </div>
+
+    
+    
+
+</div>
+
+<app-footer></app-footer>

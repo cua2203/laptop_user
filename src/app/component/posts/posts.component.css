@@ -1,0 +1,29 @@
+.post_tags{
+    display: flex;
+    min-width: 120px;
+    height: 30px;
+    
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    margin:0px 5px;
+    cursor: pointer;
+    
+}
+.active_tag{
+    background-color: var(--blue);
+    color: white;
+    border-radius: 5px;
+}
+
+ul{
+    margin-left: 10px;
+}
+ul li{
+    /* height: 40px;
+    line-height: 40px; */
+    margin: 5px;
+    min-height:40px ;
+    list-style: decimal;
+
+}

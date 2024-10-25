@@ -1,0 +1,197 @@
+<app-header></app-header>
+<div class="main">
+   
+    <div class="history container">
+        <p>Trang chủ / </p>  <p>LAPTOP MỚI</p>
+    </div>
+    
+    <!-- detail start -->
+    <div class="detail container">
+        <div class="detail_top">
+            <p class="detail_top--p">
+                {{variant.laptop_name}} {{variant.cpu | uppercase }} {{variant.ram}} {{variant.storage}}
+            </p>
+
+        </div>
+        <div class="detail_content">
+            <div class="detail_content--left">
+                <div class="zoom_img">
+                    <img src="{{variant.image}}" alt="./assets/images/detail" id="expandedImg" style="width: 70%;height: 80%;" />
+                </div>
+                <div class="list_image">
+                   <img src="{{variant.image}}" alt="./assets/images/detail"  onclick="myFunction(this)" />
+                   <img src="./assets/images/laptop/laptop1.jpg" alt="./assets/images/detail"  onclick="myFunction(this)"/>
+                   <img src="./assets/images/laptop/laptop1.jpg" alt="./assets/images/detail"  onclick="myFunction(this)"/>
+                   <img src="./assets/images/laptop/laptop1.jpg" alt="./assets/images/detail"  onclick="myFunction(this)"/>
+                   <img src="./assets/images/laptop/laptop1.jpg" alt="./assets/images/detail"  onclick="myFunction(this)"/>
+
+                </div>
+            </div>
+            <div class="detail_content--mid">
+              <div class="price">
+                <p >Deal : {{variant.price | number:'1.0-0'}}</p> <s>36.990.000</s>
+
+              </div>
+              
+              <p class="guarantee"><b>Bảo hành</b> : 12 tháng laptopAZ</p>
+              <p class="status">Tình trạng : {{variant.quantity>0 ? 'còn hàng' : 'hết hàng'}}</p>
+
+              <a href="">Xem cấu hình chi tiết</a>
+              <p>Cấu hình :</p>
+              <div class="configuration">
+                
+                <div class="variant" *ngFor="let item of Variants;let i = index" (click)="Choose(i)"  [ngClass]="{'onActive':item.variant_id==variant.variant_id}">
+                  <div class="variant_name">
+                    {{item.cpu |uppercase}} , {{item.ram | uppercase}},{{item.storage | uppercase}}, RTX 4050 6GB, 16'' 2K+ 165Hz
+                  </div>
+                  <div class="variant_price">
+                    {{!item.price?'Liên hệ':item.price | number :'1.0-0'}}
+                  </div>
+                </div>
+
+              </div>
+
+              <div id="qua_tang">
+                <div id="qua_tang--relative">
+                  Quà tặng, khuyến mãi
+                </div>
+
+                <ul>
+                  <li>Tặng Windows bản quyền theo máy</li>
+                  <li>Miễn phí cân màu màn hình công nghệ cao</li>
+                  <li>Balo thời trang AZ</li>
+                  <li>Chuột không dây + Bàn di cao cấp</li>
+                  <li>Tặng gói cài đặt, bảo dưỡng, vệ sinh máy trọn đời</li>
+                  <li>Tặng Voucher giảm giá cho lần mua tiếp theo</li>
+                </ul>
+              </div>
+
+              <button style="outline: none;border: 0;"  id="mua_hang" (click)="addToCart(variant)">
+                <span>Mua ngay</span>
+                <span>Giao tận nơi hoặc nhận ở cửa hàng</span>
+              </button>
+
+              
+            </div>
+
+
+            <div class="detail_content--right">
+              <div id="uu_dai">
+                <h4>YÊN TÂM MUA SẮM TẠI LAPTOP AZ</h4>
+                <ul>
+                  <li>Chất lượng sản phẩm là hàng đầu</li>
+                  <li>Dùng test máy 15 ngày đầu 1 đổi 1</li>
+                  <li>Hỗ trợ và hậu mãi sau bán hàng tốt nhất</li>
+                  <li>Gia hàng miễn phí toàn quốc nhanh nhất</li>
+                </ul>
+
+              </div>
+
+              <div id="dia_chi">
+      
+                <ul>
+                  <li>Số 18, ngõ 121, Thái Hà, Đống Đa, HN</li>
+                  <li>Số 56, Trần Phú, Hà Đông, HN</li>
+                  <li> 0825.233.233</li>
+                  <li> hotrolaptopaz@gmail.com</li>
+                </ul>
+
+              </div>
+
+            </div>
+        </div>
+
+   
+    </div>
+
+    <div class="deatil_content--description container">
+      <div  class="description_left">
+        <div class="description_left--top" style="display: flex;">
+          <div (click)="setActiveTab('description')" [class.tabActive]="activeTab === 'description'" class="tab "> Đặc điểm nổi bật</div>
+          <div (click)="setActiveTab('comment')" [class.tabActive]="activeTab === 'comment'" class="tab" > Nhận xét, đánh giá</div>
+        </div>
+
+     
+        <div *ngIf="activeTab === 'description'" style=" width: 100%;padding-top:10px">
+          <p style="width: 90%;" [innerHTML]="variant.description">  </p>
+        </div>
+
+        <div *ngIf="activeTab === 'comment'" style=" width: 100%;height:300px;padding-top:10px;position: relative;overflow-y: auto;">
+
+            <div style="display: flex; width: 100%;min-height: 40px; border-bottom: 1px solid #ddd;align-items: center;" *ngFor="let item of comments">
+                <div style="width: 30%;">From: <i>{{item.email}}</i></div>
+                <div style="width: 70%;padding: 0px 10px;">{{item.comment_text}}</div>
+                <div style="width: 10%;">{{item.rate}}<i class="bi bi-star-fill"></i></div>
+                
+            </div>
+
+            <div style="position: absolute; bottom: 0;left:0; width: 100%; height: 36x"> 
+             <form style="width: 100%; height: 36x; box-sizing: border-box;display: flex;justify-content: space-between;" [formGroup]="form" (submit)="onComment()">
+               <input type="text" style="width: 60%;height: 30px;" placeholder="Nhận xét..." formControlName="text">
+               <select style="width: 20%;height: 36px;outline: none;" name="" id="" formControlName="rate">
+                 <option value="1">1</option>
+                 <option value="2">2</option>
+                 <option value="3">3</option>
+                 <option value="4">4</option>
+                 <option value="5">5</option>
+               </select>
+               <button type="submit" style="width: 15%;height:36px ;background-color: var(--blue);border: none;color: white;">Gửi</button>
+
+             </form>
+            </div>
+
+
+        </div>
+          
+          
+
+      
+
+      
+       
+
+      </div>
+      <div class="description_right">
+        <div class="description_right--top">Thông số kỹ thuật</div>
+
+        <table>
+          <thead>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CPU</td>
+              <td>{{variant.cpu | uppercase}}</td>
+            </tr>
+
+            <tr>
+              <td>RAM</td>
+              <td>{{variant.ram | uppercase}} LPDDR5</td>
+            </tr>
+            <tr>
+              <td>Ổ cứng</td>
+              <td>{{variant.storage}} M.2 NVMe</td>
+            </tr>
+
+            <tr>
+              <td>Màn hình</td>
+              <td>14" FHD+  (1920x1200, 16:10)</td>
+            </tr>
+
+            <tr>
+              <td>Pin</td>
+              <td>{{variant.pin | uppercase}}</td>
+            </tr>
+     
+          </tbody>
+    
+        </table>
+
+      </div>
+
+    </div>
+
+</div>
+
+<app-footer></app-footer>
