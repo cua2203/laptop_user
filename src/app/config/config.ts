@@ -1,5 +1,5 @@
 
 export const config={
-    baseUrl:`http://localhost:3001/api/`,
+    baseUrl:`http://cuaphamvan.io.vn:3001/api/`,
 };
 
