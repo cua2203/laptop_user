@@ -39,7 +39,7 @@ export class VerifyOtpComponent implements OnInit {
   }
 
   setCookie(){
-    this.cookie.set('user_email', this.email,0.2,'/','localhost',true,'Lax');
+    this.cookie.set('user_email', this.email,0.2);
   }
   onSubmit():void{
     console.log(this.form.value)

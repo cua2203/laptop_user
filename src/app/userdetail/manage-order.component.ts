@@ -40,7 +40,7 @@ export class ManageOrderComponent implements OnInit {
   }
 
   logOut(){
-    this.cookie.delete('user_email', '/','localhost', undefined,"Lax");
+    this.cookie.delete('user_email');
     window.location.reload();
     
   }
