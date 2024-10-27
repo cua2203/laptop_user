@@ -23,6 +23,7 @@ export class HomeComponent {
   ) {}
   isDivVisible = false;
   customerEmail: any;
+  imageUrl = config.imageUrl;
 
   Category: any;
   Variant: any[] = [];

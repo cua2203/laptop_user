@@ -22,6 +22,7 @@ export class StoreComponent implements OnInit {
   ram : number = 0;
   storage : number = 0;
   cpu : number = 0;
+  imageUrl = config.imageUrl;
 
 
   query={

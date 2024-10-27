@@ -17,6 +17,7 @@ import {config} from '../../config/config';
 export class DetailComponent implements OnInit {
   form!:FormGroup;
   comments:any;
+  imageUrl= config.imageUrl;
 
   id: number =0 ;
   variant : IGetVariant ={
