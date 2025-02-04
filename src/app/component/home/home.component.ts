@@ -98,8 +98,7 @@ export class HomeComponent {
 
   onSearch() {
     this.GetVariant(this.query);
-    // console.log(this.Variant);
-    // console.log(this.query.searchString)
+
     if (this.query.searchString.length > 0) {
       this.toggleDiv();
     }

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { config } from '../config/config';
+import { config } from '../../config/config';
 
 @Component({
   selector: 'app-userdetail',

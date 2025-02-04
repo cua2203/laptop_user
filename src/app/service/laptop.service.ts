@@ -33,7 +33,7 @@ export class LaptopService {
     const pageIndex = query.pageIndex ? `&pageIndex=${query.pageIndex}` : '';
     const pageSize = query.pageSize ? `&pageSize=${query.pageSize}` : '';
     const sort = `&sort=${query.sort}`;
-    const brand =query.brand? `&brand=${query.brand}`:0;
+    const brand =query.brand? `&brand=${query.brand}`:'';
     const category =query.category? `&category=${query.category}`:0;
     const price =query.price?`&price=${query.price}` :0;
     

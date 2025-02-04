@@ -4,7 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
-import { config } from '../config/config';
+import { config } from '../../config/config';
 
 @Component({
   selector: 'app-manage-order',
